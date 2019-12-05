@@ -1,0 +1,10 @@
+digraph {
+Academy [ label=" Academy " shape= box ]
+Academy_ctx [ label=" Academy_ctx " shape= box ]
+Artist [ label=" Artist " shape= box ]
+Technique [ label=" Technique " shape= box ]
+
+"Academy" -> "Academy_ctx" [style= dotted ]
+"Artist" -> "Academy_ctx" [style= dotted ]
+"Technique" -> "Academy_ctx" [style= dotted ]
+}
