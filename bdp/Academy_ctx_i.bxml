@@ -1,0 +1,82 @@
+<Machine name='Academy_ctx_i' type='implementation'>
+<Abstraction>Academy_ctx</Abstraction>
+<Values>
+<Attr>
+<Pos l='4' c='1' s='6'/>
+</Attr>
+<Valuation ident='size_artists' typref='2701647786'>
+<Attr>
+<Pos l='5' c='5' s='12'/>
+</Attr>
+<Integer_Literal value='50' typref='2701647786'>
+<Attr>
+<Pos l='5' c='20' s='2'/>
+</Attr>
+</Integer_Literal>
+</Valuation>
+<Valuation ident='size_techniques' typref='2701647786'>
+<Attr>
+<Pos l='6' c='5' s='15'/>
+</Attr>
+<Integer_Literal value='25' typref='2701647786'>
+<Attr>
+<Pos l='6' c='23' s='2'/>
+</Attr>
+</Integer_Literal>
+</Valuation>
+<Valuation ident='ARTIST' typref='3603043417'>
+<Attr>
+<Pos l='8' c='5' s='6'/>
+</Attr>
+<Binary_Exp op='..' typref='3603043417'>
+<Attr>
+<Pos l='8' c='15' s='2'/>
+</Attr>
+<Integer_Literal value='0' typref='2701647786'>
+<Attr>
+<Pos l='8' c='14' s='1'/>
+</Attr>
+</Integer_Literal>
+<Id value='size_artists' typref='2701647786'>
+<Attr>
+<Pos l='8' c='17' s='12'/>
+</Attr>
+</Id>
+</Binary_Exp>
+</Valuation>
+<Valuation ident='TECHNIQUE' typref='3603043417'>
+<Attr>
+<Pos l='9' c='5' s='9'/>
+</Attr>
+<Binary_Exp op='..' typref='3603043417'>
+<Attr>
+<Pos l='9' c='18' s='2'/>
+</Attr>
+<Integer_Literal value='0' typref='2701647786'>
+<Attr>
+<Pos l='9' c='17' s='1'/>
+</Attr>
+</Integer_Literal>
+<Id value='size_techniques' typref='2701647786'>
+<Attr>
+<Pos l='9' c='20' s='15'/>
+</Attr>
+</Id>
+</Binary_Exp>
+</Valuation>
+</Values>
+<Initialisation>
+<Skip/>
+</Initialisation>
+<TypeInfos>
+<Type id='2701647786'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='3603043417'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+
+</Machine>

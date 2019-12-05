@@ -1,0 +1,59 @@
+THEORY ProofList IS
+_f(1) & _f(2) & _f(8) & _f(16) & WellDefinedness_graduate.6,(_f(22) & _f(21) & _f(32) => _f(34));
+_f(1) & _f(2) & _f(8) & _f(16) & WellDefinedness_graduate.5,(_f(22) & _f(21) & _f(32) => _f(33));
+_f(1) & _f(2) & _f(8) & _f(16) & WellDefinedness_graduate.4,(_f(22) & _f(32) => _f(34));
+_f(1) & _f(2) & _f(8) & _f(16) & WellDefinedness_graduate.3,(_f(22) & _f(32) => _f(33));
+_f(1) & _f(2) & _f(8) & _f(16) & WellDefinedness_graduate.2,(_f(32) => _f(34));
+_f(1) & _f(2) & _f(8) & _f(16) & WellDefinedness_graduate.1,(_f(32) => _f(33));
+_f(1) & _f(2) & _f(8) & WellDefinedness_Precondition_graduate.2,(_f(31) & _f(32) => _f(34));
+_f(1) & _f(2) & _f(8) & WellDefinedness_Precondition_graduate.1,(_f(31) & _f(32) => _f(33));
+_f(1) & _f(2) & _f(8) & _f(16) & graduate.3,(_f(22) & _f(21) & _f(19) & _f(3) & _f(6) => _f(25));
+_f(1) & _f(2) & _f(8) & _f(16) & graduate.2,(_f(22) & _f(18) & _f(3) & _f(6) => _f(24));
+_f(1) & _f(2) & _f(8) & _f(16) & graduate.1,(_f(17) & _f(3) & _f(6) => _f(23));
+_f(1) & _f(2) & _f(8) & _f(14) & delete_artist.1,(_f(3) & _f(4) => _f(15));
+_f(1) & _f(2) & _f(8) & _f(9) & create_artist.2,(_f(10) & _f(11) & _f(3) & _f(6) => _f(13));
+_f(1) & _f(2) & _f(8) & _f(9) & create_artist.1,(_f(10) & _f(11) & _f(3) & _f(4) => _f(12));
+_f(1) & _f(2) & Initialisation.2,(_f(3) & _f(6) => _f(7));
+_f(1) & _f(2) & Initialisation.1,(_f(3) & _f(4) => _f(5))
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+ARTIST: FIN(INTEGER) & not(ARTIST = {}) & TECHNIQUE: FIN(INTEGER) & not(TECHNIQUE = {}) & ((1..4)*{RANK}): FIN(NATURAL*{RANK}) & not(((1..4)*{RANK}) = {}) & ((size_artists) : ((NAT-{0}))) & (1 +1 <= size_artists) & ((size_techniques) : ((NAT-{0}))) & (1 +1 <= size_techniques);
+"Invariant is preserved";
+"Check invariant ((artists) : (((((0) .. (size_artists))) >+> (ARTIST))))";
+(({}) : (((((0) .. (size_artists))) >+> (ARTIST))));
+"Check invariant ((rank_artist) : (((ARTIST) --> (RANK))))";
+(((ARTIST * {})) : (((ARTIST) --> (((1..4)*{RANK})))));
+artists : ((0) .. (size_artists)) +-> ARTIST & artists~ : ARTIST +-> ((0) .. (size_artists)) & ((artists) : (((((0) .. (size_artists))) >+> (ARTIST)))) & rank_artist : ARTIST +-> ((1..4)*{RANK}) & dom(rank_artist) = ARTIST & ((rank_artist) : (((ARTIST) --> (((1..4)*{RANK})))));
+((aa) : (ARTIST)) & not(aa : ran(artists));
+((xx) : (((0) .. (size_artists))));
+not(xx : dom(artists));
+((((artists) <+ (({((xx) |-> (aa))})))) : (((((0) .. (size_artists))) >+> (ARTIST))));
+((((rank_artist) <+ (({((aa) |-> ((1|->RANK)))})))) : (((ARTIST) --> (((1..4)*{RANK})))));
+((aa) : (ARTIST)) & ((aa) : (ran(artists)));
+((((artists) |>> (({aa})))) : (((((0) .. (size_artists))) >+> (ARTIST))));
+((aa) : (ran(artists))) & not((rank_artist )(aa) = (4|->RANK));
+(((rank_artist )(aa)) = ((1|->RANK)));
+(((rank_artist )(aa)) = ((2|->RANK)));
+(((rank_artist )(aa)) = ((3|->RANK)));
+not((((rank_artist )(aa)) = ((3|->RANK))));
+not((((rank_artist )(aa)) = ((2|->RANK))));
+not((((rank_artist )(aa)) = ((1|->RANK))));
+((((rank_artist) <+ (({((aa) |-> ((2|->RANK)))})))) : (((ARTIST) --> (((1..4)*{RANK})))));
+((((rank_artist) <+ (({((aa) |-> ((3|->RANK)))})))) : (((ARTIST) --> (((1..4)*{RANK})))));
+((((rank_artist) <+ (({((aa) |-> ((4|->RANK)))})))) : (((ARTIST) --> (((1..4)*{RANK})))));
+btrue;
+artists : ((0) .. (size_artists)) +-> ARTIST;
+artists~ : ARTIST +-> ((0) .. (size_artists));
+((artists) : (((((0) .. (size_artists))) >+> (ARTIST))));
+((aa) : (ARTIST));
+((aa) : (ran(artists)));
+"Well definedness";
+((aa) : (dom(rank_artist)));
+((rank_artist) : (((dom(rank_artist)) +-> (ran(rank_artist)))))
+END
+&
+THEORY EnumerateX IS
+RANK == {white,colour,black,master}
+END

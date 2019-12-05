@@ -1,0 +1,58 @@
+IMPLEMENTATION Academy_i
+REFINES Academy
+
+IMPORTS
+    Artist, Technique
+
+SEES
+    Academy_ctx
+
+CONCRETE_VARIABLES
+    artist_techniques_i
+
+INVARIANT
+//    artist_techniques_i : ARTIST <-> TECHNIQUE
+    artist_techniques_i : ARTIST --> TECHNIQUE 
+    & dom(artist_techniques) = dom(artist_techniques_i) 
+    & ran(artist_techniques) = ran(artist_techniques_i)
+
+INITIALISATION
+    artist_techniques_i := {}
+
+
+OPERATIONS
+    new_artist(aa) =
+    BEGIN
+        create_artist(aa)
+    END;
+    
+    new_technique (tt, rr) =
+    BEGIN
+        create_technique(tt, rr)
+    END;
+    
+    grant_technique (aa, tt) =
+    BEGIN
+        artist_techniques_i := artist_techniques_i \/ {aa |-> tt}
+    END;
+    
+    grant_rank (aa) =
+    BEGIN
+        graduate(aa);
+        artist_techniques_i := artist_techniques_i - ({aa} <| artist_techniques_i)
+    END;
+    
+    remove_artist (aa) =
+    BEGIN
+        artist_techniques_i := artist_techniques_i - ({aa} <| artist_techniques_i);
+        delete_artist(aa)
+    END;
+    
+    remove_technique (tt) = 
+    BEGIN
+        artist_techniques_i := artist_techniques_i - (artist_techniques_i |> {tt});
+        delete_technique(tt)
+    END;
+
+
+ END

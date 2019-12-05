@@ -1,0 +1,94 @@
+IMPLEMENTATION Technique_i
+REFINES Technique
+
+SEES
+    Academy_ctx
+
+
+CONCRETE_VARIABLES
+    techniques_i, position, rank_technique_i
+
+INVARIANT
+    position : 0..size_techniques
+    
+    & techniques_i : (0..size_techniques) --> TECHNIQUE
+//    & techniques = techniques_i
+    
+    & rank_technique_i : (0..size_techniques) --> RANK
+//    & rank_technique = rank_technique_i
+    
+//    & techniques_i : 0..size_techniques --> TECHNIQUE
+//    & (0..(position-1) <| techniques_i) : 0..(position-1) >-> TECHNIQUE
+//    & ran(0..(position-1) <| techniques_i) = ran(techniques)
+    
+//    & rank_technique_i : 0..size_artists --> RANK
+//    & (0..(position-1) <| rank_technique_i) : 0..(position-1) >-> RANK
+//    & ran(0..(position-1) <| rank_technique_i) = ran(rank_technique)
+    
+
+
+INITIALISATION
+    techniques_i := (0..size_techniques) * {};
+    rank_technique_i := (0..size_techniques) * {};
+    position := 0
+
+OPERATIONS
+    create_technique (tt, rr) =
+    BEGIN
+        IF position < size_techniques
+        THEN VAR ii, nsz, bb IN
+                ii := 0;
+                nsz := position;
+                bb := FALSE;
+                
+                WHILE ii < position
+                DO VAR cc IN
+                        cc := techniques_i(ii);
+                        IF cc = tt
+                        THEN bb := TRUE
+                        END
+                    END;
+                    ii := ii + 1
+                INVARIANT ii : 0..position 
+                    & (bb = TRUE <=> #xx.(xx : 0..ii-1 & techniques_i(xx) = tt))
+                VARIANT nsz - ii
+                END;
+                
+                IF bb = FALSE
+                THEN techniques_i(position) := tt;
+                    rank_technique_i(position) := rr;
+                    position := position + 1
+                END
+            END
+        END
+    END;
+    
+    delete_technique(tt) =
+    BEGIN
+        IF position > 0
+        THEN VAR ii, nsz IN
+                ii := 0;
+                nsz := position;
+                
+                WHILE ii < position
+                DO VAR cc IN
+                        cc := techniques_i(ii);
+                        IF cc = tt
+                        THEN techniques_i(ii) := techniques_i(position -1);
+                            //techniques_i(position-1) := {};
+                            rank_technique_i(ii) := rank_technique_i(position-1);
+                            //rank_technique_i(position-1) := {};
+                            position := position - 1
+                        END
+                    END;
+                    ii := ii + 1;
+                INVARIANT ii : NAT
+                VARIANT nsz - ii
+                END
+            END
+        END
+    END
+
+
+
+ END

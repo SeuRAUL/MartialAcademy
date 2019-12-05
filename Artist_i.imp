@@ -1,0 +1,124 @@
+IMPLEMENTATION Artist_i
+REFINES Artist
+
+SEES
+    Academy_ctx, Technique
+
+
+CONCRETE_VARIABLES
+    artists_i, position , rank_artist_i
+
+INVARIANT
+    position : 0..size_artists
+    
+    & artists_i : (0..size_artists) --> ARTIST
+    & rank_artist_i : (0..size_artists) --> RANK
+    
+//    & artists_i : 0..size_artists --> ARTIST
+//    & (0..(position-1) <| artists_i) : 0..(position-1) >-> ARTIST
+//    & ran(0..(position-1) <| artists_i) = ran(artists)
+//    
+//    & rank_artist_i : 0..size_artists --> RANK
+//    & (0..(position-1) <| rank_artist_i) : 0..(position-1) >-> RANK
+//    & ran(0..(position-1) <| rank_artist_i) = ran(rank_artist)
+    
+
+
+INITIALISATION
+    artists_i := (0..(size_artists)) * {};
+    rank_artist_i := (0..(size_artists)) * {};
+    position := 0
+    
+
+OPERATIONS
+    create_artist (aa) =
+    BEGIN
+        IF position < size_artists
+        THEN VAR ii, nsz, bb IN
+                ii := 0;
+                nsz := position;
+                bb := FALSE;
+                
+                WHILE ii < position
+                DO VAR cc IN
+                        cc := artists_i(ii);
+                        IF cc = aa
+                        THEN bb := TRUE
+                        END
+                    END;
+                    ii := ii + 1
+                INVARIANT ii : 0..position 
+                    & (bb = TRUE <=> #xx.(xx : 0..ii-1 & artists_i(xx) = aa))
+                VARIANT nsz - ii
+                END;
+                
+                IF bb = FALSE
+                THEN artists_i(position) := aa;
+                    rank_artist_i(position) := white;
+                    position := position + 1
+                END
+            END
+        END
+    END;
+
+    
+    delete_artist (aa) =
+    BEGIN
+        IF position > 0
+        THEN VAR ii, nsz IN
+                ii := 0;
+                nsz := position;
+                
+                WHILE ii < position
+                DO VAR cc IN
+                        cc := artists_i(ii);
+                        IF cc = aa
+                        THEN artists_i(ii) := artists_i(position -1);
+                            //artists_i(position -1) := {};
+                            rank_artist_i(ii) := rank_artist_i(position -1);
+                            //rank_artist_i(position -1) := {};
+                            position := position - 1
+                        END
+                    END;
+                    ii := ii + 1
+                INVARIANT ii : NAT
+                VARIANT nsz - ii
+                END
+            END
+        END
+    END;
+
+
+    graduate (aa) = 
+    BEGIN
+        IF position > 0
+        THEN VAR ii, nsz IN
+                ii := 0;
+                nsz := position;
+                
+                WHILE ii < position
+                DO VAR cc IN
+                        cc := artists_i(ii);
+                        IF cc = aa
+                        THEN 
+                            IF rank_artist_i(ii) = white
+                            THEN rank_artist_i(ii) := colour
+                            ELSIF rank_artist_i(ii) = colour
+                            THEN rank_artist_i(ii) := black
+                            ELSIF rank_artist_i(ii) = black
+                            THEN rank_artist_i(ii) := master
+                            END
+                        END
+                    END;
+                    ii := ii + 1
+                INVARIANT ii : NAT
+                VARIANT nsz - ii
+                END
+            END
+        END
+    END
+
+    
+    
+
+END

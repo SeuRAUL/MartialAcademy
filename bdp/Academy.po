@@ -1,0 +1,91 @@
+THEORY ProofList IS
+_f(1) & _f(2) & _f(3) & _f(18) & _f(27) & WellDefinedness_grant_rank.8,(_f(33) & _f(32) & _f(49) => _f(51));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(27) & WellDefinedness_grant_rank.7,(_f(33) & _f(32) & _f(49) => _f(50));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(27) & WellDefinedness_grant_rank.6,(_f(33) & _f(49) => _f(51));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(27) & WellDefinedness_grant_rank.5,(_f(33) & _f(49) => _f(50));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(27) & WellDefinedness_grant_rank.4,(_f(49) => _f(51));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(27) & WellDefinedness_grant_rank.3,(_f(49) => _f(50));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(27) & WellDefinedness_grant_rank.2,(_f(35) & _f(49) => _f(51));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(27) & WellDefinedness_grant_rank.1,(_f(35) & _f(49) => _f(50));
+_f(1) & _f(2) & _f(3) & _f(18) & WellDefinedness_Precondition_grant_rank.4,(_f(35) & _f(54) & _f(49) => _f(51));
+_f(1) & _f(2) & _f(3) & _f(18) & WellDefinedness_Precondition_grant_rank.3,(_f(35) & _f(54) & _f(49) => _f(50));
+_f(1) & _f(2) & _f(3) & _f(18) & WellDefinedness_Precondition_grant_rank.2,(_f(35) & _f(49) => _f(51));
+_f(1) & _f(2) & _f(3) & _f(18) & WellDefinedness_Precondition_grant_rank.1,(_f(35) & _f(49) => _f(50));
+_f(1) & _f(2) & _f(3) & _f(18) & WellDefinedness_Precondition_grant_technique.4,(_f(35) & _f(40) & _f(49) => _f(53));
+_f(1) & _f(2) & _f(3) & _f(18) & WellDefinedness_Precondition_grant_technique.3,(_f(35) & _f(40) & _f(49) => _f(52));
+_f(1) & _f(2) & _f(3) & _f(18) & WellDefinedness_Precondition_grant_technique.2,(_f(35) & _f(40) & _f(49) => _f(51));
+_f(1) & _f(2) & _f(3) & _f(18) & WellDefinedness_Precondition_grant_technique.1,(_f(35) & _f(40) & _f(49) => _f(50));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(40) & remove_technique.3,(_f(42) & _f(38) => _f(43));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(40) & remove_technique.2,(_f(41) & _f(16) => _f(44));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(40) & remove_technique.1,(_f(41) & _f(38) => _f(43));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(35) & remove_artist.3,(_f(37) & _f(38) => _f(39));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(35) & remove_artist.2,(_f(36) & _f(16) => _f(34));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(35) & remove_artist.1,(_f(36) & _f(38) => _f(39));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(27) & grant_rank.4,(_f(33) & _f(32) & _f(31) & _f(16) => _f(34));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(27) & grant_rank.3,(_f(33) & _f(32) & _f(30) & _f(16) => _f(34));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(27) & grant_rank.2,(_f(33) & _f(29) & _f(16) => _f(34));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(27) & grant_rank.1,(_f(28) & _f(16) => _f(34));
+_f(1) & _f(2) & _f(3) & _f(18) & _f(25) & grant_technique.1,(_f(16) => _f(26));
+_f(1) & _f(2) & _f(3) & Initialisation.1,(_f(4) & _f(5) & _f(6) & _f(7) & _f(8) & _f(9) & _f(10) & _f(11) & _f(12) & _f(13) & _f(14) & _f(15) & _f(16) => _f(17))
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+ARTIST: FIN(INTEGER) & not(ARTIST = {}) & TECHNIQUE: FIN(INTEGER) & not(TECHNIQUE = {}) & ((1..4)*{RANK}): FIN(NATURAL*{RANK}) & not(((1..4)*{RANK}) = {}) & ((size_artists) : ((NAT-{0}))) & (1 +1 <= size_artists) & ((size_techniques) : ((NAT-{0}))) & (1 +1 <= size_techniques);
+artists : ((0) .. (size_artists)) +-> ARTIST & artists~ : ARTIST +-> ((0) .. (size_artists)) & ((artists) : (((((0) .. (size_artists))) >+> (ARTIST)))) & rank_artist : ARTIST +-> ((1..4)*{RANK}) & dom(rank_artist) = ARTIST & ((rank_artist) : (((ARTIST) --> (((1..4)*{RANK}))))) & techniques : ((0) .. (size_techniques)) +-> TECHNIQUE & techniques~ : TECHNIQUE +-> ((0) .. (size_techniques)) & ((techniques) : (((((0) .. (size_techniques))) >+> (TECHNIQUE)))) & rank_technique : TECHNIQUE +-> ((1..4)*{RANK}) & dom(rank_technique) = TECHNIQUE & ((rank_technique) : (((TECHNIQUE) --> (((1..4)*{RANK})))));
+{} : ((0) .. (size_artists)) +-> ARTIST;
+{}~ : ARTIST +-> ((0) .. (size_artists));
+(({}) : (((((0) .. (size_artists))) >+> (ARTIST))));
+(ARTIST * {}) : ARTIST +-> ((1..4)*{RANK});
+dom((ARTIST * {})) = ARTIST;
+(((ARTIST * {})) : (((ARTIST) --> (((1..4)*{RANK})))));
+{} : ((0) .. (size_techniques)) +-> TECHNIQUE;
+{}~ : TECHNIQUE +-> ((0) .. (size_techniques));
+(({}) : (((((0) .. (size_techniques))) >+> (TECHNIQUE))));
+(TECHNIQUE * {}) : TECHNIQUE +-> ((1..4)*{RANK});
+dom((TECHNIQUE * {})) = TECHNIQUE;
+(((TECHNIQUE * {})) : (((TECHNIQUE) --> (((1..4)*{RANK})))));
+"Invariant is preserved";
+(({}) : (((ARTIST) <-> (TECHNIQUE))));
+((artist_techniques) : (((ARTIST) <-> (TECHNIQUE))));
+((aa) : (ARTIST)) & not(aa : ran(artists));
+((xx) : (((0) .. (size_artists))));
+not(xx : dom(artists));
+((tt) : (TECHNIQUE)) & not(tt : ran(techniques)) & ((rr) : (((1..4)*{RANK})));
+((xx) : (((0) .. (size_techniques))));
+not(xx : dom(techniques));
+((aa) : (ran(artists))) & ((tt) : (ran(techniques))) & (((rank_artist )(aa)) = ((rank_technique )(tt)));
+((((artist_techniques) \/ (({((aa) |-> (tt))})))) : (((ARTIST) <-> (TECHNIQUE))));
+((aa) : (ran(artists))) & not((rank_artist )(aa) = (4|->RANK)) & ((ran(((({aa})) <| (artist_techniques)))) = (ran(((({(rank_artist )(aa)})) <| ((rank_technique)~)))));
+(((rank_artist )(aa)) = ((1|->RANK)));
+(((rank_artist )(aa)) = ((2|->RANK)));
+(((rank_artist )(aa)) = ((3|->RANK)));
+not((((rank_artist )(aa)) = ((3|->RANK))));
+not((((rank_artist )(aa)) = ((2|->RANK))));
+not((((rank_artist )(aa)) = ((1|->RANK))));
+(((artist_techniques - ((({aa})) <| (artist_techniques)))) : (((ARTIST) <-> (TECHNIQUE))));
+((aa) : (ran(artists)));
+not(((({aa})) <| (artist_techniques)) = {});
+not(not(((({aa})) <| (artist_techniques)) = {}));
+"Precondition predicate";
+((aa) : (ARTIST));
+((tt) : (ran(techniques)));
+((tt) : (ran(artist_techniques)));
+not(((tt) : (ran(artist_techniques))));
+((tt) : (TECHNIQUE));
+(((artist_techniques - ((artist_techniques) |> (({tt}))))) : (((ARTIST) <-> (TECHNIQUE))));
+btrue;
+not(tt : ran(techniques));
+not(rr : ran(techniques));
+((rr) : (TECHNIQUE));
+"Well definedness";
+((aa) : (dom(rank_artist)));
+((rank_artist) : (((dom(rank_artist)) +-> (ran(rank_artist)))));
+((tt) : (dom(rank_technique)));
+((rank_technique) : (((dom(rank_technique)) +-> (ran(rank_technique)))));
+not((rank_artist )(aa) = (4|->RANK))
+END
+&
+THEORY EnumerateX IS
+RANK == {white,colour,black,master}
+END

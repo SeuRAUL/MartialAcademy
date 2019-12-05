@@ -1,0 +1,11 @@
+IMPLEMENTATION Academy_ctx_i
+REFINES Academy_ctx
+
+VALUES
+    size_artists = 50;
+    size_techniques = 25;
+    
+    ARTIST = 0..size_artists;
+    TECHNIQUE = 0..size_techniques
+
+END

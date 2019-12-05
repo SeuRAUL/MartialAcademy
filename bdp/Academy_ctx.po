@@ -1,0 +1,15 @@
+THEORY ProofList
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+ARTIST: FIN(INTEGER) & not(ARTIST = {}) & TECHNIQUE: FIN(INTEGER) & not(TECHNIQUE = {}) & ((1..4)*{RANK}): FIN(NATURAL*{RANK}) & not(((1..4)*{RANK}) = {}) & ((size_artists) : ((NAT-{0}))) & (1 +1 <= size_artists) & ((size_techniques) : ((NAT-{0}))) & (1 +1 <= size_techniques);
+ARTIST: FIN(INTEGER) & not(ARTIST = {});
+((size_techniques) : ((NAT-{0})));
+(1 +1 <= size_artists);
+((size_artists) : ((NAT-{0})))
+END
+&
+THEORY EnumerateX IS
+RANK == {white,colour,black,master}
+END

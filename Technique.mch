@@ -27,11 +27,6 @@ OPERATIONS
     delete_technique (tt) =
     PRE tt : TECHNIQUE & tt : ran(techniques)
     THEN techniques := techniques |>> {tt}
-    END;
-
-    rr <-- get_technique_rank (tt) = 
-    PRE tt : TECHNIQUE & tt : ran(techniques)
-    THEN rr := rank_technique(tt)
     END
 
 END

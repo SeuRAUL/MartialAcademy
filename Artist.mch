@@ -2,7 +2,7 @@ MACHINE
     Artist
 
 SEES
-    Academy_ctx, Technique
+    Academy_ctx
 
 VARIABLES
     artists, rank_artist
@@ -38,11 +38,6 @@ OPERATIONS
         ELSIF rank_artist(aa) = black
         THEN rank_artist(aa) := master
         END
-    END;
-    
-    rr <-- get_artist_rank (aa) = 
-    PRE aa : ARTIST & aa : ran(artists)
-    THEN rr := rank_artist(aa)
     END
     
 

@@ -10,11 +10,23 @@
         <component_file path="C:/Users/raull/Downloads/MetForm/MartialAcademy" name="Academy_ctx" suffix="mch" user="raull">
             <component name="Academy_ctx" type="specification" />
         </component_file>
+        <component_file path="C:/Users/raull/Downloads/MetForm/MartialAcademy" name="Academy_ctx_i" suffix="imp" user="raull">
+            <component name="Academy_ctx_i" type="implementation" />
+        </component_file>
+        <component_file path="C:/Users/raull/Downloads/MetForm/MartialAcademy" name="Academy_i" suffix="imp" user="raull">
+            <component name="Academy_i" type="implementation" />
+        </component_file>
         <component_file path="C:/Users/raull/Downloads/MetForm/MartialAcademy" name="Artist" suffix="mch" user="raull">
             <component name="Artist" type="specification" />
         </component_file>
+        <component_file path="C:/Users/raull/Downloads/MetForm/MartialAcademy" name="Artist_i" suffix="imp" user="raull">
+            <component name="Artist_i" type="implementation" />
+        </component_file>
         <component_file path="C:/Users/raull/Downloads/MetForm/MartialAcademy" name="Technique" suffix="mch" user="raull">
             <component name="Technique" type="specification" />
+        </component_file>
+        <component_file path="C:/Users/raull/Downloads/MetForm/MartialAcademy" name="Technique_i" suffix="imp" user="raull">
+            <component name="Technique_i" type="implementation" />
         </component_file>
     </project>
 </db_xml>

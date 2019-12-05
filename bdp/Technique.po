@@ -1,0 +1,35 @@
+THEORY ProofList IS
+_f(1) & _f(2) & _f(8) & _f(14) & delete_technique.1,(_f(3) & _f(4) => _f(15));
+_f(1) & _f(2) & _f(8) & _f(9) & create_technique.2,(_f(10) & _f(11) & _f(3) & _f(6) => _f(13));
+_f(1) & _f(2) & _f(8) & _f(9) & create_technique.1,(_f(10) & _f(11) & _f(3) & _f(4) => _f(12));
+_f(1) & _f(2) & Initialisation.2,(_f(3) & _f(6) => _f(7));
+_f(1) & _f(2) & Initialisation.1,(_f(3) & _f(4) => _f(5))
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+ARTIST: FIN(INTEGER) & not(ARTIST = {}) & TECHNIQUE: FIN(INTEGER) & not(TECHNIQUE = {}) & ((1..4)*{RANK}): FIN(NATURAL*{RANK}) & not(((1..4)*{RANK}) = {}) & ((size_artists) : ((NAT-{0}))) & (1 +1 <= size_artists) & ((size_techniques) : ((NAT-{0}))) & (1 +1 <= size_techniques);
+"Invariant is preserved";
+"Check invariant ((techniques) : (((((0) .. (size_techniques))) >+> (TECHNIQUE))))";
+(({}) : (((((0) .. (size_techniques))) >+> (TECHNIQUE))));
+"Check invariant ((rank_technique) : (((TECHNIQUE) --> (RANK))))";
+(((TECHNIQUE * {})) : (((TECHNIQUE) --> (((1..4)*{RANK})))));
+techniques : ((0) .. (size_techniques)) +-> TECHNIQUE & techniques~ : TECHNIQUE +-> ((0) .. (size_techniques)) & ((techniques) : (((((0) .. (size_techniques))) >+> (TECHNIQUE)))) & rank_technique : TECHNIQUE +-> ((1..4)*{RANK}) & dom(rank_technique) = TECHNIQUE & ((rank_technique) : (((TECHNIQUE) --> (((1..4)*{RANK})))));
+((tt) : (TECHNIQUE)) & not(tt : ran(techniques)) & ((rr) : (((1..4)*{RANK})));
+((xx) : (((0) .. (size_techniques))));
+not(xx : dom(techniques));
+((((techniques) <+ (({((xx) |-> (tt))})))) : (((((0) .. (size_techniques))) >+> (TECHNIQUE))));
+((((rank_technique) <+ (({((tt) |-> (rr))})))) : (((TECHNIQUE) --> (((1..4)*{RANK})))));
+((tt) : (TECHNIQUE)) & ((tt) : (ran(techniques)));
+((((techniques) |>> (({tt})))) : (((((0) .. (size_techniques))) >+> (TECHNIQUE))));
+btrue;
+techniques : ((0) .. (size_techniques)) +-> TECHNIQUE;
+techniques~ : TECHNIQUE +-> ((0) .. (size_techniques));
+((techniques) : (((((0) .. (size_techniques))) >+> (TECHNIQUE))));
+not(tt : ran(techniques));
+((tt) : (TECHNIQUE))
+END
+&
+THEORY EnumerateX IS
+RANK == {white,colour,black,master}
+END
